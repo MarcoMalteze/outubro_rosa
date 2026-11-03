@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Quiz Outubro Rosa: Você sabe tudo sobre o câncer de mama?</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .fade-in {
+      animation: fadeIn 0.28s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-rose-50 via-pink-50/70 to-white text-slate-800 flex flex-col justify-between selection:bg-pink-200">
+
+  <!-- Top Header -->
+  <header class="w-full bg-white/90 backdrop-blur-md border-b border-pink-100 sticky top-0 z-20 no-print">
+    <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-rose-500 to-pink-400 flex items-center justify-center shadow-sm shrink-0" aria-hidden="true">
+          <!-- Pink Ribbon SVG -->
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C9.24 2 7 4.24 7 7c0 2.08 1.25 4.29 3.16 6.72L6.5 19.5l2.6.9 2.9-4.53 2.9 4.53 2.6-.9-3.66-5.78C15.75 11.29 17 9.08 17 7c0-2.76-2.24-5-5-5zm0 2.5A2.5 2.5 0 0 1 14.5 7c0 1.24-.88 2.89-2.5 4.97C10.38 9.89 9.5 8.24 9.5 7A2.5 2.5 0 0 1 12 4.5z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-rose-600 block leading-none">Campanha Educativa Escolar</span>
+          <span class="text-sm font-semibold text-slate-700">Outubro Rosa</span>
+        </div>
+      </div>
+
+      <button id="btnOpenQrModal" type="button" class="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 active:bg-rose-200 border border-rose-200 px-3 py-2 rounded-full transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h6v6H3V3zm12 0h6v6h-6V3zM3 15h6v6H3v-6zm13 0h2v2h-2v-2zm3 3h2v3h-2v-3zm-3 3h2v-2h-2v2zm-2-4h2v2h-2v-2zm4-2h2v2h-2v-2z"/>
+        </svg>
+        <span>QR Code do Mural</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 w-full max-w-xl mx-auto px-4 py-5 flex flex-col justify-center no-print">
+
+    <!-- VIEW 1: WELCOME SCREEN -->
+    <section id="welcomeView" class="bg-white rounded-3xl shadow-lg shadow-pink-100/80 border border-pink-100 p-6 sm:p-8 fade-in">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100 text-rose-700 text-xs font-bold mb-4">
+        <span>🎀 Especial Ensino Médio • Rápido e Sem Cadastro</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight mb-3">
+        Quiz Outubro Rosa: Você sabe tudo sobre o câncer de mama?
+      </h1>
+
+      <p class="text-slate-600 text-base leading-relaxed mb-6">
+        Teste seus conhecimentos em <strong>8 perguntas rápidas</strong> sobre prevenção, sinais de alerta, diagnóstico precoce e mitos ou verdades. Aprender a cuidar da saúde também é um ato de amizade e proteção para quem você ama!
+      </p>
+
+      <!-- Info Highlights -->
+      <div class="grid grid-cols-3 gap-2.5 mb-6 text-center">
+        <div class="bg-rose-50/80 border border-rose-100 rounded-2xl p-3">
+          <span class="block text-xl font-extrabold text-rose-600">8</span>
+          <span class="text-xs font-medium text-slate-600">Perguntas</span>
+        </div>
+        <div class="bg-rose-50/80 border border-rose-100 rounded-2xl p-3">
+          <span class="block text-xl font-extrabold text-rose-600">~2 min</span>
+          <span class="text-xs font-medium text-slate-600">Duração</span>
+        </div>
+        <div class="bg-rose-50/80 border border-rose-100 rounded-2xl p-3">
+          <span class="block text-xl font-extrabold text-rose-600">100%</span>
+          <span class="text-xs font-medium text-slate-600">Educativo</span>
+        </div>
+      </div>
+
+      <button id="btnStartQuiz" type="button" class="w-full min-h-[56px] bg-gradient-to-r from-rose-600 to-pink-500 hover:from-rose-700 hover:to-pink-600 active:scale-[0.99] text-white font-bold text-lg rounded-2xl shadow-md shadow-rose-200 flex items-center justify-center gap-2 transition">
+        <span>Começar o Quiz Agora</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </button>
+
+      <p class="text-xs text-center text-slate-500 mt-4">
+        Conteúdo baseado em informações oficiais do <a href="https://www.gov.br/inca/pt-br/assuntos/cancer/tipos/mama" target="_blank" rel="noopener noreferrer" class="underline text-rose-600 font-medium">INCA</a> e do <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/cancer-de-mama" target="_blank" rel="noopener noreferrer" class="underline text-rose-600 font-medium">Ministério da Saúde</a>.
+      </p>
+    </section>
+
+    <!-- VIEW 2: QUESTION SCREEN -->
+    <section id="quizView" class="hidden bg-white rounded-3xl shadow-lg shadow-pink-100/80 border border-pink-100 p-5 sm:p-7 fade-in">
+      <!-- Progress Bar & Counter -->
+      <div class="mb-5">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-2">
+          <span id="questionCounter" class="text-rose-600 uppercase tracking-wide">Pergunta 1 de 8</span>
+          <span id="scoreTracker" class="bg-pink-50 text-rose-700 px-2.5 py-1 rounded-full border border-pink-200">Acertos: 0</span>
+        </div>
+        <div class="w-full h-2.5 bg-rose-100 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-rose-500 to-pink-500 rounded-full transition-all duration-300" style="width: 12.5%"></div>
+        </div>
+      </div>
+
+      <!-- Category Tag -->
+      <div class="mb-2">
+        <span id="questionTopic" class="inline-block text-xs font-bold px-3 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">
+          Prevenção
+        </span>
+      </div>
+
+      <!-- Question Title -->
+      <h2 id="questionText" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug mb-5">
+        Carregando pergunta...
+      </h2>
+
+      <!-- Options List -->
+      <div id="optionsContainer" class="space-y-3 mb-5" role="radiogroup" aria-labelledby="questionText">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Feedback Box (Shown after selecting an option) -->
+      <div id="feedbackBox" class="hidden rounded-2xl p-4 mb-5 border transition-all">
+        <div class="flex items-start gap-3">
+          <div id="feedbackIcon" class="w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm"></div>
+          <div>
+            <p id="feedbackTitle" class="font-bold text-base mb-1"></p>
+            <p id="feedbackExplanation" class="text-sm text-slate-700 leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Question Button -->
+      <button id="btnNextQuestion" type="button" class="hidden w-full min-h-[54px] bg-gradient-to-r from-rose-600 to-pink-500 hover:from-rose-700 hover:to-pink-600 active:scale-[0.99] text-white font-bold text-base rounded-2xl shadow-md shadow-rose-200 items-center justify-center gap-2 transition">
+        <span id="btnNextLabel">Próxima Pergunta</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </button>
+    </section>
+
+    <!-- VIEW 3: RESULTS SCREEN -->
+    <section id="resultView" class="hidden bg-white rounded-3xl shadow-lg shadow-pink-100/80 border border-pink-100 p-6 sm:p-8 fade-in">
+      <div class="text-center mb-6">
+        <div id="resultBadge" class="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-500 to-pink-400 text-white flex items-center justify-center text-3xl font-extrabold mx-auto mb-4 shadow-md shadow-pink-200">
+          8/8
+        </div>
+
+        <span class="inline-block text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-200 mb-2">
+          Resultado Final
+        </span>
+
+        <h2 id="resultHeading" class="text-2xl font-extrabold text-slate-900 mb-2">
+          Parabéns por participar!
+        </h2>
+
+        <p id="resultMessage" class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Mensagem personalizada de incentivo.
+        </p>
+      </div>
+
+      <!-- Medical Guidance & Prevention Disclaimer Alert -->
+      <div class="bg-rose-50/90 border-2 border-rose-200 rounded-2xl p-4 sm:p-5 mb-6">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl leading-none select-none" aria-hidden="true">🩺</span>
+          <div>
+            <h3 class="font-bold text-rose-900 text-sm sm:text-base mb-1">
+              Importante: Procure orientação médica profissional!
+            </h3>
+            <p class="text-xs sm:text-sm text-rose-900/90 leading-relaxed mb-2">
+              Não existe uma forma garantida de prevenir 100% o câncer de mama, pois a doença tem múltiplas causas (incluindo idade e fatores genéticos). Porém, manter hábitos saudáveis reduz os riscos, e o <strong>diagnóstico precoce</strong> salva vidas!
+            </p>
+            <p class="text-xs sm:text-sm text-rose-900/90 leading-relaxed">
+              Diante de qualquer alteração ou sinal suspeito nas mamas (como caroço, alteração na pele ou saída de líquido do mamilo), <strong>procure imediatamente uma Unidade Básica de Saúde (UBS) ou um(a) médico(a)</strong>. Compartilhe essa ideia com sua família!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Accordion Toggle -->
+      <div class="mb-6">
+        <button id="btnToggleReview" type="button" class="w-full min-h-[48px] px-4 py-3 rounded-2xl border border-pink-200 bg-pink-50/50 hover:bg-pink-50 text-rose-700 font-semibold text-sm flex items-center justify-between transition">
+          <span>Ver resumo das suas respostas (8 perguntas)</span>
+          <svg id="reviewChevron" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div id="reviewList" class="hidden mt-3 space-y-2.5 max-h-80 overflow-y-auto pr-1">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="btnRestartQuiz" type="button" class="flex-1 min-h-[54px] bg-gradient-to-r from-rose-600 to-pink-500 hover:from-rose-700 hover:to-pink-600 text-white font-bold text-base rounded-2xl shadow-md shadow-rose-200 flex items-center justify-center gap-2 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+          <span>Refazer o Quiz</span>
+        </button>
+
+        <button id="btnShareQuiz" type="button" class="flex-1 min-h-[54px] bg-white hover:bg-rose-50 text-rose-700 border-2 border-rose-200 font-bold text-base rounded-2xl flex items-center justify-center gap-2 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+          </svg>
+          <span id="shareBtnText">Copiar Resumo</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- QR CODE & WALL POSTER MODAL -->
+  <div id="qrModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 no-print" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-pink-100 fade-in max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-3">
+        <h3 id="qrModalTitle" class="text-lg font-extrabold text-slate-900">
+          Gerador de QR Code para o Mural
+        </h3>
+        <button id="btnCloseQrModal" type="button" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold" aria-label="Fechar janela">
+          ✕
+        </button>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+        Insira abaixo o link público onde o seu quiz está publicado para atualizar o QR Code instantaneamente e imprimir para o mural da escola:
+      </p>
+
+      <label for="qrUrlInput" class="block text-xs font-bold uppercase text-rose-700 mb-1">
+        Link Público do Quiz
+      </label>
+      <div class="flex gap-2 mb-4">
+        <input id="qrUrlInput" type="url" placeholder="https://seu-quiz-outubro-rosa.netlify.app" class="flex-1 text-sm border border-pink-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+        <button id="btnUpdateQr" type="button" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shrink-0 transition">
+          Gerar
+        </button>
+      </div>
+
+      <!-- Poster Preview Card -->
+      <div class="bg-gradient-to-b from-rose-50 to-white border-2 border-rose-200 rounded-2xl p-5 text-center mb-4">
+        <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-white bg-rose-600 px-3 py-0.5 rounded-full mb-2">
+          Outubro Rosa na Escola
+        </span>
+        <h4 class="text-base font-extrabold text-slate-900 leading-snug mb-1">
+          Quiz Outubro Rosa: Você sabe tudo sobre o câncer de mama?
+        </h4>
+        <p class="text-xs text-slate-600 mb-3">
+          Aponte a câmera do celular para o QR Code e responda em 2 minutos!
+        </p>
+        <div class="bg-white p-3 rounded-2xl border border-pink-200 inline-block shadow-sm">
+          <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=be123c&data=https%3A%2F%2Fwww.gov.br%2Finca%2Fpt-br%2Fassuntos%2Fcancer%2Ftipos%2Fmama" alt="QR Code do Quiz Outubro Rosa" class="w-44 h-44 mx-auto max-w-full h-auto" />
+        </div>
+        <p id="qrUrlCaption" class="text-[11px] text-slate-500 mt-2 break-all font-mono"></p>
+      </div>
+
+      <div class="flex gap-2.5">
+        <button id="btnPrintPoster" type="button" class="flex-1 min-h-[46px] bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm rounded-xl flex items-center justify-center gap-1.5 transition">
+          <span>🖨️ Imprimir Cartaz</span>
+        </button>
+        <button id="btnCloseQrModalBottom" type="button" class="min-h-[46px] px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINTABLE POSTER VIEW (Only visible when printing) -->
+  <section class="hidden print-only p-8 text-center max-w-xl mx-auto">
+    <div class="border-4 border-rose-500 rounded-3xl p-8">
+      <p class="text-sm font-bold uppercase tracking-widest text-rose-600 mb-2">Campanha Outubro Rosa • Ensino Médio</p>
+      <h1 class="text-3xl font-extrabold text-slate-900 mb-4">Quiz Outubro Rosa: Você sabe tudo sobre o câncer de mama?</h1>
+      <p class="text-lg text-slate-700 mb-6">Escaneie o QR Code abaixo com a câmera do seu celular e teste seus conhecimentos em 8 perguntas rápidas!</p>
+      <img id="qrImagePrint" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&color=be123c&data=https%3A%2F%2Fwww.gov.br%2Finca%2Fpt-br%2Fassuntos%2Fcancer%2Ftipos%2Fmama" alt="QR Code para impressão" class="w-64 h-64 mx-auto mb-4" />
+      <p id="qrUrlCaptionPrint" class="text-xs text-slate-500 font-mono break-all mb-4"></p>
+      <p class="text-sm text-rose-800 font-semibold">Conscientização e diagnóstico precoce salvam vidas. Procure sempre orientação médica!</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-full py-4 text-center text-xs text-slate-500 border-t border-pink-100/80 bg-white/60 no-print">
+    <div class="max-w-xl mx-auto px-4">
+      <span>🎀 Campanha Educativa Outubro Rosa • Fontes: </span>
+      <a href="https://www.gov.br/inca/pt-br/assuntos/cancer/tipos/mama" target="_blank" rel="noopener noreferrer" class="text-rose-600 hover:underline font-medium">INCA</a>
+      <span> e </span>
+      <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/cancer-de-mama" target="_blank" rel="noopener noreferrer" class="text-rose-600 hover:underline font-medium">Ministério da Saúde</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const questions = [
+        {
+          topic: "Prevenção e Cuidados",
+          question: "Sobre a prevenção do câncer de mama, qual das afirmações abaixo é a CORRETA?",
+          options: [
+            "Existe uma vacina que impede 100% o surgimento do câncer de mama.",
+            "Não há uma forma garantida de evitar 100% a doença, mas hábitos saudáveis reduzem bastante o risco.",
+            "Apenas mulheres que já tiveram casos na família precisam cuidar da saúde das mamas.",
+            "Tomar vitaminas caseiras garante que a pessoa nunca terá câncer de mama."
+          ],
+          correctIndex: 1,
+          explanation: "Como o câncer de mama tem várias causas (como idade, genética e fatores biológicos), não existe prevenção 100% garantida. Porém, praticar exercícios, manter o peso saudável e evitar álcool e cigarro pode reduzir em cerca de 30% o risco de desenvolver a doença, segundo o INCA."
+        },
+        {
+          topic: "Sinais de Alerta",
+          question: "Qual destes sinais nas mamas merece atenção e deve ser avaliado por um(a) médico(a)?",
+          options: [
+            "Nódulo (caroço) fixo e geralmente indolor, pele parecida com 'casca de laranja' ou saída espontânea de líquido pelo mamilo.",
+            "Apenas dores muito fortes que aparecem somente quando a pessoa corre.",
+            "Qualquer pinta pequena de nascença que nunca mudou de tamanho.",
+            "Sensação de frio nas mãos durante o inverno."
+          ],
+          correctIndex: 0,
+          explanation: "Caroço endurecido e fixo (geralmente sem dor), alterações na pele da mama (vermelhidão, retração ou aspecto de 'casca de laranja'), inversão do mamilo, secreção espontânea e pequenos caroços na axila são os principais sinais de alerta que exigem avaliação médica."
+        },
+        {
+          topic: "Fatores de Risco",
+          question: "Quais fatores abaixo estão associados a um maior risco de desenvolver câncer de mama?",
+          options: [
+            "Beber bastante água e praticar esportes na escola.",
+            "Usar roupas escuras no calor ou dormir após o almoço.",
+            "Avanço da idade (especialmente após os 50 anos), sedentarismo, consumo de bebidas alcoólicas e histórico familiar.",
+            "Comer frutas cítricas e verduras todos os dias."
+          ],
+          correctIndex: 2,
+          explanation: "O envelhecimento é o principal fator de risco, além de histórico familiar/genético, fatores hormonais, excesso de peso, falta de atividade física e consumo de álcool. Lembre-se: ter um fator de risco não significa que a pessoa terá a doença, mas reforça a importância do acompanhamento médico."
+        },
+        {
+          topic: "Diagnóstico Precoce",
+          question: "Por que o diagnóstico precoce do câncer de mama é tão importante?",
+          options: [
+            "Porque elimina a necessidade de consultar um médico.",
+            "Porque aumenta muito as chances de sucesso no tratamento e permite procedimentos menos agressivos.",
+            "Porque substitui todos os hábitos saudáveis do dia a dia.",
+            "Porque só é possível tratar a doença se a pessoa sentir dor intensa."
+          ],
+          correctIndex: 1,
+          explanation: "Quando o câncer de mama é identificado no início (em estágios iniciais), as chances de cura e controle são muito altas e o tratamento costuma ser menos agressivo para o corpo e a saúde mental da paciente."
+        },
+        {
+          topic: "Exame de Mamografia",
+          question: "Qual é o papel da mamografia no cuidado com a saúde das mamas?",
+          options: [
+            "É um exame de imagem capaz de identificar alterações muito pequenas, antes mesmo de serem sentidas pelo toque.",
+            "Serve apenas para tratar tumores que já causam dor.",
+            "É uma cirurgia feita somente em adolescentes.",
+            "Não tem utilidade se a pessoa já observa as próprias mamas no espelho."
+          ],
+          correctIndex: 0,
+          explanation: "A mamografia é o principal exame de rastreamento do câncer de mama. No SUS, a mamografia de rastreamento é recomendada para mulheres de 50 a 69 anos a cada dois anos (ou antes, conforme indicação médica individual e histórico familiar)."
+        },
+        {
+          topic: "Mitos e Verdades",
+          question: "MITO ou VERDADE: 'Usar desodorante antitranspirante, sutiã com aro ou sofrer uma pancada nos seios causa câncer de mama.'",
+          options: [
+            "Verdade, o alumínio do desodorante é a principal causa da doença.",
+            "Verdade, qualquer batida na mama se transforma em um tumor maligno.",
+            "Mito! Estudos científicos comprovam que desodorantes, tipos de sutiã e pancadas NÃO causam câncer de mama.",
+            "Verdade, mas apenas se o sutiã for usado durante a noite."
+          ],
+          correctIndex: 2,
+          explanation: "É MITO! Segundo o INCA e o Ministério da Saúde, não existe relação entre o uso de desodorantes, sutiãs apertados ou traumas/pancadas na mama e o surgimento do câncer. Às vezes, uma batida apenas faz a pessoa tocar a região e notar um caroço que já estava lá."
+        },
+        {
+          topic: "Autoconhecimento das Mamas",
+          question: "Conhecer o próprio corpo e observar as mamas no dia a dia substitui a mamografia e a consulta médica?",
+          options: [
+            "Sim, quem toca as próprias mamas nunca precisa ir ao médico.",
+            "Não! Conhecer o próprio corpo ajuda a notar mudanças rapidamente, mas não substitui a consulta médica nem a mamografia.",
+            "Sim, a mamografia só serve para quem não sabe fazer o autoexame.",
+            "Não é recomendado observar o próprio corpo em nenhuma idade."
+          ],
+          correctIndex: 1,
+          explanation: "Estar atenta ao próprio corpo no cotidiano (no banho ou ao trocar de roupa) é ótimo para reconhecer o que é normal e notar alterações, mas NUNCA substitui o exame clínico feito por profissionais de saúde e a mamografia na faixa etária indicada."
+        },
+        {
+          topic: "Mitos e Verdades",
+          question: "MITO ou VERDADE: 'Homens também podem ter câncer de mama?'",
+          options: [
+            "Mito, pois homens não possuem nenhum tecido mamário.",
+            "Verdade! Embora seja raro (cerca de 1% dos casos), homens também têm tecido mamário e podem desenvolver a doença.",
+            "Mito, o câncer de mama ocorre exclusivamente em mulheres acima de 80 anos.",
+            "Verdade, e ocorre na mesma proporção entre homens e mulheres."
+          ],
+          correctIndex: 1,
+          explanation: "É VERDADE! Embora o câncer de mama seja muito mais frequente em mulheres, os homens também possuem glândulas e tecido mamário, representando cerca de 1% do total de casos. Por isso, nódulos na região peitoral masculina também devem ser avaliados por um médico."
+        }
+      ];
+
+      let currentIndex = 0;
+      let score = 0;
+      let answeredCurrent = false;
+      let userAnswers = [];
+
+      // Elements
+      const welcomeView = document.getElementById('welcomeView');
+      const quizView = document.getElementById('quizView');
+      const resultView = document.getElementById('resultView');
+
+      const questionCounter = document.getElementById('questionCounter');
+      const scoreTracker = document.getElementById('scoreTracker');
+      const progressBar = document.getElementById('progressBar');
+      const questionTopic = document.getElementById('questionTopic');
+      const questionText = document.getElementById('questionText');
+      const optionsContainer = document.getElementById('optionsContainer');
+
+      const feedbackBox = document.getElementById('feedbackBox');
+      const feedbackIcon = document.getElementById('feedbackIcon');
+      const feedbackTitle = document.getElementById('feedbackTitle');
+      const feedbackExplanation = document.getElementById('feedbackExplanation');
+      const btnNextQuestion = document.getElementById('btnNextQuestion');
+      const btnNextLabel = document.getElementById('btnNextLabel');
+
+      const resultBadge = document.getElementById('resultBadge');
+      const resultHeading = document.getElementById('resultHeading');
+      const resultMessage = document.getElementById('resultMessage');
+      const btnToggleReview = document.getElementById('btnToggleReview');
+      const reviewList = document.getElementById('reviewList');
+      const reviewChevron = document.getElementById('reviewChevron');
+      const shareBtnText = document.getElementById('shareBtnText');
+
+      // QR Modal elements
+      const qrModal = document.getElementById('qrModal');
+      const qrUrlInput = document.getElementById('qrUrlInput');
+      const qrImage = document.getElementById('qrImage');
+      const qrUrlCaption = document.getElementById('qrUrlCaption');
+      const qrImagePrint = document.getElementById('qrImagePrint');
+      const qrUrlCaptionPrint = document.getElementById('qrUrlCaptionPrint');
+
+      function startQuiz() {
+        currentIndex = 0;
+        score = 0;
+        answeredCurrent = false;
+        userAnswers = [];
+        welcomeView.classList.add('hidden');
+        resultView.classList.add('hidden');
+        quizView.classList.remove('hidden');
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        answeredCurrent = false;
+        const q = questions[currentIndex];
+        const total = questions.length;
+        const progressPct = ((currentIndex + 1) / total) * 100;
+
+        questionCounter.textContent = 'Pergunta ' + (currentIndex + 1) + ' de ' + total;
+        scoreTracker.textContent = 'Acertos: ' + score;
+        progressBar.style.width = progressPct + '%';
+        questionTopic.textContent = q.topic;
+        questionText.textContent = q.question;
+
+        feedbackBox.classList.add('hidden');
+        btnNextQuestion.classList.add('hidden');
+        btnNextQuestion.classList.remove('flex');
+
+        optionsContainer.innerHTML = '';
+        const letters = ['A', 'B', 'C', 'D'];
+
+        q.options.forEach(function (optText, idx) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'w-full min-h-[60px] text-left p-4 rounded-2xl border-2 border-pink-100 bg-rose-50/40 hover:bg-rose-50 hover:border-pink-300 active:scale-[0.99] transition flex items-start gap-3.5 group';
+          btn.setAttribute('data-index', idx);
+
+          const badge = document.createElement('span');
+          badge.className = 'w-8 h-8 rounded-xl bg-white border border-pink-200 text-rose-700 font-bold text-sm flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-rose-600 group-hover:text-white group-hover:border-rose-600 transition';
+          badge.textContent = letters[idx];
+
+          const label = document.createElement('span');
+          label.className = 'text-sm sm:text-base font-medium text-slate-800 leading-snug';
+          label.textContent = optText;
+
+          btn.appendChild(badge);
+          btn.appendChild(label);
+
+          btn.addEventListener('click', function () {
+            handleSelectOption(idx);
+          });
+
+          optionsContainer.appendChild(btn);
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function handleSelectOption(selectedIndex) {
+        if (answeredCurrent) return;
+        answeredCurrent = true;
+
+        const q = questions[currentIndex];
+        const isCorrect = selectedIndex === q.correctIndex;
+        if (isCorrect) {
+          score++;
+          scoreTracker.textContent = 'Acertos: ' + score;
+        }
+
+        userAnswers.push({
+          question: q.question,
+          selectedText: q.options[selectedIndex],
+          correctText: q.options[q.correctIndex],
+          isCorrect: isCorrect,
+          explanation: q.explanation
+        });
+
+        const optionButtons = optionsContainer.querySelectorAll('button');
+        optionButtons.forEach(function (btn, idx) {
+          btn.disabled = true;
+          btn.classList.remove('hover:bg-rose-50', 'hover:border-pink-300', 'active:scale-[0.99]');
+          const badge = btn.querySelector('span:first-child');
+
+          if (idx === q.correctIndex) {
+            btn.className = 'w-full min-h-[60px] text-left p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/90 flex items-start gap-3.5 transition';
+            badge.className = 'w-8 h-8 rounded-xl bg-emerald-600 text-white font-bold text-sm flex items-center justify-center shrink-0 mt-0.5';
+            badge.textContent = '✓';
+          } else if (idx === selectedIndex && !isCorrect) {
+            btn.className = 'w-full min-h-[60px] text-left p-4 rounded-2xl border-2 border-rose-500 bg-rose-100/70 flex items-start gap-3.5 transition';
+            badge.className = 'w-8 h-8 rounded-xl bg-rose-600 text-white font-bold text-sm flex items-center justify-center shrink-0 mt-0.5';
+            badge.textContent = '✕';
+          } else {
+            btn.className = 'w-full min-h-[60px] text-left p-4 rounded-2xl border border-slate-200 bg-slate-50 opacity-60 flex items-start gap-3.5';
+          }
+        });
+
+        // Show feedback
+        feedbackBox.classList.remove('hidden');
+        if (isCorrect) {
+          feedbackBox.className = 'rounded-2xl p-4 mb-5 border-2 border-emerald-200 bg-emerald-50/80 fade-in';
+          feedbackIcon.className = 'w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm';
+          feedbackIcon.textContent = '✓';
+          feedbackTitle.className = 'font-bold text-base mb-1 text-emerald-900';
+          feedbackTitle.textContent = 'Resposta certa! Muito bem!';
+        } else {
+          feedbackBox.className = 'rounded-2xl p-4 mb-5 border-2 border-rose-200 bg-rose-50/90 fade-in';
+          feedbackIcon.className = 'w-7 h-7 rounded-full bg-rose-600 text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm';
+          feedbackIcon.textContent = '!';
+          feedbackTitle.className = 'font-bold text-base mb-1 text-rose-900';
+          feedbackTitle.textContent = 'Não foi dessa vez! Veja por quê:';
+        }
+        feedbackExplanation.textContent = q.explanation;
+
+        // Show Next Button
+        btnNextLabel.textContent = (currentIndex === questions.length - 1) ? 'Ver Minha Pontuação Final' : 'Próxima Pergunta';
+        btnNextQuestion.classList.remove('hidden');
+        btnNextQuestion.classList.add('flex');
+      }
+
+      function handleNext() {
+        if (currentIndex < questions.length - 1) {
+          currentIndex++;
+          renderQuestion();
+        } else {
+          showResults();
+        }
+      }
+
+      function showResults() {
+        quizView.classList.add('hidden');
+        resultView.classList.remove('hidden');
+
+        const total = questions.length;
+        resultBadge.textContent = score + '/' + total;
+
+        if (score >= 7) {
+          resultHeading.textContent = 'Excelente! Você mandou super bem! 🎀';
+          resultMessage.textContent = 'Você acertou ' + score + ' de ' + total + ' perguntas e mostrou que está muito bem informado(a) sobre o Outubro Rosa. Que tal compartilhar o que aprendeu com seus amigos e familiares hoje?';
+        } else if (score >= 4) {
+          resultHeading.textContent = 'Muito bom! Conhecimento que protege vidas! 🌸';
+          resultMessage.textContent = 'Você acertou ' + score + ' de ' + total + ' perguntas! Cada informação nova que você aprendeu aqui ajuda a combater mitos e a incentivar o cuidado com a saúde na sua família.';
+        } else {
+          resultHeading.textContent = 'Obrigado por participar e aprender! 💗';
+          resultMessage.textContent = 'Você acertou ' + score + ' de ' + total + ' perguntas. O objetivo deste quiz é justamente aprender sem julgamentos! Revise as explicações abaixo e leve essas informações para quem você ama.';
+        }
+
+        // Build review items
+        reviewList.innerHTML = '';
+        userAnswers.forEach(function (item, idx) {
+          const card = document.createElement('div');
+          card.className = 'p-3.5 rounded-2xl border text-left ' + (item.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200');
+
+          const header = document.createElement('p');
+          header.className = 'text-xs font-bold mb-1 ' + (item.isCorrect ? 'text-emerald-800' : 'text-rose-800');
+          header.textContent = (idx + 1) + '. ' + (item.isCorrect ? '✓ Acertou' : '✕ Errou') + ' — ' + item.question;
+
+          const correctLine = document.createElement('p');
+          correctLine.className = 'text-xs text-slate-700 font-semibold mb-1';
+          correctLine.textContent = 'Correta: ' + item.correctText;
+
+          const expLine = document.createElement('p');
+          expLine.className = 'text-xs text-slate-600 leading-relaxed';
+          expLine.textContent = item.explanation;
+
+          card.appendChild(header);
+          card.appendChild(correctLine);
+          card.appendChild(expLine);
+          reviewList.appendChild(card);
+        });
+
+        reviewList.classList.add('hidden');
+        reviewChevron.classList.remove('rotate-180');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function toggleReview() {
+        const isHidden = reviewList.classList.contains('hidden');
+        if (isHidden) {
+          reviewList.classList.remove('hidden');
+          reviewChevron.classList.add('rotate-180');
+        } else {
+          reviewList.classList.add('hidden');
+          reviewChevron.classList.remove('rotate-180');
+        }
+      }
+
+      function copyShareSummary() {
+        const summaryText = '🎀 Fiz o "Quiz Outubro Rosa: Você sabe tudo sobre o câncer de mama?" na escola e acertei ' + score + ' de ' + questions.length + '! Conscientização e diagnóstico precoce salvam vidas. Procure sempre orientação médica diante de sinais suspeitos!';
+        let copied = false;
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = summaryText;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          copied = document.execCommand('copy');
+          document.body.removeChild(ta);
+        } catch (e) {
+          copied = false;
+        }
+        shareBtnText.textContent = copied ? '✓ Copiado!' : 'Resumo Pronto!';
+        setTimeout(function () {
+          shareBtnText.textContent = 'Copiar Resumo';
+        }, 2500);
+      }
+
+      function updateQrCode() {
+        let rawUrl = (qrUrlInput.value || '').trim();
+        if (!rawUrl) {
+          rawUrl = window.location.href && window.location.href.startsWith('http')
+            ? window.location.href
+            : 'https://www.gov.br/inca/pt-br/assuntos/cancer/tipos/mama';
+        }
+        const encoded = encodeURIComponent(rawUrl);
+        const qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=8&color=be123c&data=' + encoded;
+        qrImage.src = qrApiUrl;
+        qrImagePrint.src = qrApiUrl;
+        qrUrlCaption.textContent = rawUrl;
+        qrUrlCaptionPrint.textContent = rawUrl;
+      }
+
+      function openQrModal() {
+        if (!qrUrlInput.value && window.location.href && window.location.href.startsWith('http')) {
+          qrUrlInput.value = window.location.href;
+        }
+        updateQrCode();
+        qrModal.classList.remove('hidden');
+      }
+
+      function closeQrModal() {
+        qrModal.classList.add('hidden');
+      }
+
+      // Attach Event Listeners
+      document.getElementById('btnStartQuiz').addEventListener('click', startQuiz);
+      btnNextQuestion.addEventListener('click', handleNext);
+      document.getElementById('btnRestartQuiz').addEventListener('click', startQuiz);
+      btnToggleReview.addEventListener('click', toggleReview);
+      document.getElementById('btnShareQuiz').addEventListener('click', copyShareSummary);
+
+      document.getElementById('btnOpenQrModal').addEventListener('click', openQrModal);
+      document.getElementById('btnCloseQrModal').addEventListener('click', closeQrModal);
+      document.getElementById('btnCloseQrModalBottom').addEventListener('click', closeQrModal);
+      document.getElementById('btnUpdateQr').addEventListener('click', updateQrCode);
+      document.getElementById('btnPrintPoster').addEventListener('click', function () {
+        window.print();
+      });
+    })();
+  </script>
+</body>
+</html>
